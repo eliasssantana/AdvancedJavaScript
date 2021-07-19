@@ -21,6 +21,7 @@ console.log(genFunction.next());
 console.log(genFunction.next());
 console.log(genFunction.next("algum lugar!"));
 
+// UTILIZANDO O GENERATOR PARA PERCORRER UM WHILE LOOP INFINITO
 function* naturalNumbers(){
     let i = 0;
     while(true){
@@ -28,3 +29,29 @@ function* naturalNumbers(){
         i++;
     }
 }
+
+const it = naturalNumbers();
+
+console.log(it.next());// MÉTODO NEXT() ITERAR OS VALORES DO WHILE LOOP PARA O PRÓXIMO.
+console.log(it.next());
+console.log(it.next());
+console.log(it.next());
+console.log(it.next());
+console.log(it.next());
+console.log(it.next());
+console.log(it.next());
+
+// UTILIZANDO O GENERATOR PARA ITERAR VALORES DE UM OBJETO LITERAL
+const obj = {
+    values: [1,2,3,4,5],
+    *[Symbol.iterator](){
+        for(let i = 0; i < this.values.length; i++){
+            yield this.values[i];
+        }
+    }
+}
+
+for(let i of obj){
+    console.log(i);
+}
+
